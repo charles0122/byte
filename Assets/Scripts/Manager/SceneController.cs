@@ -1,15 +1,76 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ByteLoop.Tool;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Unity.Mathematics;
+
 namespace ByteLoop.Manager
 {
 
-
     public class SceneController : PersistentMonoSingleton<SceneController>
     {
+        private bool isFading;
+        [SerializeField] private float fadeDuration = 0.5f;
+        [SerializeField] private CanvasGroup faderCanvasGroup = null;
+        [SerializeField] private Image faderImage = null;
+        public string StartingSceneName;
+
+        public void FadeAndLoadScene(string sceneName )
+        {
+            if (!isFading)
+            {
+                StartCoroutine(FadeAndSwitchScenes(sceneName));
+            }
+        }
+        private IEnumerator FadeAndSwitchScenes(string sceneName )
+        {
+            EventCenter.CallBeforeSceneUnloadFadeOutEvent();
+            yield return StartCoroutine(Fade(2f));
+
+            EventCenter.CallBeforeSceneUnloadEvent();
+
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            yield return StartCoroutine(LoadSceneAndSetActive(sceneName));
+
+            EventCenter.CallAfterSceneloadEvent();
+            yield return StartCoroutine(Fade(0f));
+            EventCenter.CallAfterSceneloadFadeInEvent();
+
+        }
+        private IEnumerator LoadSceneAndSetActive(string sceneName)
+        {
+            yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            Scene newlyLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+            SceneManager.SetActiveScene(newlyLoadedScene);
+        }
+
+        private IEnumerator Start()
+        {
+            faderImage.color = new Color(0f, 0f, 0f, 1f);
+            faderCanvasGroup.alpha = 1;
+            yield return StartCoroutine(LoadSceneAndSetActive(StartingSceneName.ToString()));
+            EventCenter.CallAfterSceneloadEvent();
+     
+            StartCoroutine(Fade(0f));
+
+        }
+        private IEnumerator Fade(float finalAlpha)
+        {
+            isFading = true;
+            faderCanvasGroup.blocksRaycasts = true;
+
+            float fadeSpeed = math.abs(faderCanvasGroup.alpha - finalAlpha) / fadeDuration;
+            while (!Mathf.Approximately(faderCanvasGroup.alpha, finalAlpha))
+            {
+                faderCanvasGroup.alpha = Mathf.MoveTowards(faderCanvasGroup.alpha, finalAlpha, fadeSpeed * Time.deltaTime);
+                yield return null;
+            }
+            isFading = false;
+            faderCanvasGroup.blocksRaycasts = false;
+
+        }
 
         /// <summary>
         /// 切换场景 同步加载
@@ -19,7 +80,7 @@ namespace ByteLoop.Manager
         {
             if (IsValidCanLoadScene(name))
             {
-                SceneManager.LoadScene(name,mode);
+                SceneManager.LoadScene(name, mode);
 
             }
         }
@@ -62,7 +123,7 @@ namespace ByteLoop.Manager
             while (!AO.isDone)
             {
                 //事件中心向外分发场景进度
-                EventCenter.Instance.EventTrigger<float>("Loading", AO.progress);
+                EventCenter.Instance.EventTrigger("Loading");
 
                 yield return AO.progress;
             }

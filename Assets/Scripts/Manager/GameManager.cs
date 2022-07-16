@@ -12,7 +12,14 @@ namespace ByteLoop.Manager
         public bool InputAllowed = true;
         public GameObject TimerGO;
         private void Start() {
-            // SceneController.Instance.LoadScene("L1",LoadSceneMode.Additive);
+        }
+
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                SceneController.Instance.FadeAndLoadScene("Day2");
+            }
         }
     }
 

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using ByteLoop.Tool;
 using UnityEngine;
 
+
+
 public class MouseManger : PersistentMonoSingleton<MouseManger>
 {
 
     // 无法操作时禁止
     public Texture2D normal, forbid, dialog;
-    private void Update()
-    {
-
-    }
+   private void Awake() {
+    
+   }
 
     void SetCursorTexture()
     {
@@ -33,5 +34,5 @@ public class MouseManger : PersistentMonoSingleton<MouseManger>
         }
     }
 
-    
+
 }
