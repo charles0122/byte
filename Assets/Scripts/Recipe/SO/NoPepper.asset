@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e45af443253fd147aed864e24f77bcd, type: 3}
-  m_Name: Default
+  m_Name: NoPepper
   m_EditorClassIdentifier: 
-  desc: "\u9ED8\u8BA4\u7684\u714E\u997C\u679C\u5B50"
+  desc: "\u4E0D\u52A0\u8FA3\u6912\u7684"
   RecipeItemList:
   - materialTypes: 1
-    nums: 1
-  - materialTypes: 2
     nums: 1
   - materialTypes: 3
     nums: 1

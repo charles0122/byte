@@ -15,7 +15,7 @@ namespace ByteLoop.DialogSystem
     public class AdvancedText : TextMeshProUGUI
     {
 
-        private enum DisplayType
+        public enum DisplayType
         {
             Default,
             Typing,
@@ -24,19 +24,25 @@ namespace ByteLoop.DialogSystem
         private List<GameObject> rubyList = new List<GameObject>();//注音列表
         private Widget _widget;
         private int typingIndex;//打字进度下标
-        private float defaultInterval = 0.02f;//默认间隔
+        private float defaultInterval = 0.06f;//默认间隔
         private AdvancedTextPreprocessor SelfPreprocessor => (AdvancedTextPreprocessor)textPreprocessor;
 
         public Action OnFinished;
         private Coroutine _typingCoroutine;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            _widget = GetComponent<Widget>();
+        }
         public void Init()
         {
             SetText("");
             ClearRubyText();
         }
-        public void Disappear(float duration=0.2f){
-            _widget.Fade(0,duration,null);
+        public void Disappear(float duration = 0.2f)
+        {
+            _widget.Fade(0, duration, null);
         }
         public AdvancedText()
         {
@@ -95,6 +101,9 @@ namespace ByteLoop.DialogSystem
 
             rubyList.Add(ruby);
         }
+
+
+
         /// <summary>
         /// 清空注音
         /// </summary>
@@ -110,22 +119,26 @@ namespace ByteLoop.DialogSystem
         {
             foreach (var item in GetComponentsInChildren<TextMeshProUGUI>())
             {
-                if (item != null)
+                if (item != this)
                 {
+                    // Debug.Log(item.gameObject.name);
                     Destroy(item.gameObject);
                 }
             }
         }
 
 
-        public void QuickShowRemaining(){
-            if(_typingCoroutine!=null){
+        public void QuickShowRemaining()
+        {
+            if (_typingCoroutine != null)
+            {
                 StopCoroutine(_typingCoroutine);
-                for (;  typingIndex< m_characterCount; typingIndex++)
+                for (; typingIndex < m_characterCount; typingIndex++)
                 {
                     StartCoroutine(FadeInCharacter(typingIndex));
                 }
             }
+            OnFinished?.Invoke();
         }
 
         /// <summary>
@@ -137,13 +150,14 @@ namespace ByteLoop.DialogSystem
         //     SetText(content);
         //     StartCoroutine(Typing());
         // }
-        IEnumerator SetText(string content, DisplayType type, float fadingDuration = 0.2f)
+        public IEnumerator SetText(string content, DisplayType type, float fadingDuration = 0.2f)
         {
             if (_typingCoroutine != null)
             {
                 StopCoroutine(_typingCoroutine);
             }
             ClearRubyText();
+            Debug.Log(content);
             SetText(content);
             yield return null;
 
@@ -155,12 +169,12 @@ namespace ByteLoop.DialogSystem
                     OnFinished?.Invoke();
                     break;
                 case DisplayType.Fading:
-                    _widget.Fade(1,fadingDuration,OnFinished.Invoke);
-                     SetAllRubyText();
+                    _widget.Fade(1, fadingDuration, OnFinished.Invoke);
+                    SetAllRubyText();
                     break;
                 case DisplayType.Typing:
-                _widget.Fade(1,fadingDuration,null);
-                _typingCoroutine =StartCoroutine(Typing());
+                    _widget.Fade(1, fadingDuration, null);
+                    _typingCoroutine = StartCoroutine(Typing());
                     break;
                 default:
                     break;
@@ -175,7 +189,7 @@ namespace ByteLoop.DialogSystem
             ForceMeshUpdate();
             //所有字透明度先设为125
             for (int i = 0; i < m_characterCount; i++)
-            { 
+            {
                 SetSingleCharaterAlpha(i, 0);
             }
             typingIndex = 0;

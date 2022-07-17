@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 556883296043591373}
   - component: {fileID: 4674154349976025058}
   - component: {fileID: 5418616584639300027}
+  - component: {fileID: 3779936925166968728}
   m_Layer: 5
   m_Name: NextCursor
   m_TagString: Untagged
@@ -112,6 +113,18 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!225 &3779936925166968728
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948151234033653055}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2769330662032912886
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c94b7a5993b9d45b07eba618a21b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _widget: {fileID: 4878691230941540558}
+  _nextCursor: {fileID: 5418616584639300027}
+  _npc: {fileID: 3508490372917046905}
+  _content: {fileID: 2769330662032912880}
 --- !u!1 &8625750234855196342
 GameObject:
   m_ObjectHideFlags: 0

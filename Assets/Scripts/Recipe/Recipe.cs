@@ -5,11 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Recipe",fileName ="new Recipe",order =1)]
 public class Recipe : ScriptableObject
 {
+    public string desc;
     public List<RecipeItem> RecipeItemList;
 }
 
 
 public enum RecipeState{
+    None,
     UnConfirm,
-    Confirm
+    Confirm,
+    Fail,
+    Success
 }

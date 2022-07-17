@@ -10,9 +10,7 @@ public class MouseManger : PersistentMonoSingleton<MouseManger>
 
     // 无法操作时禁止
     public Texture2D normal, forbid, dialog;
-   private void Awake() {
-    
-   }
+
 
     void SetCursorTexture()
     {

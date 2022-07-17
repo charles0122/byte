@@ -10,11 +10,36 @@ namespace ByteLoop.Manager
 
     public class ProductionStation : PersistentMonoSingleton<ProductionStation>
     {
-        public Recipe currentRecipe;
-        public RecipeState recipeState = RecipeState.UnConfirm;
-        [SerializeField]   public List<Recipe> RecipeList;
-        private bool   useOil=false,usePaste=false;
-        
+        [SerializeField]private Recipe currentRecipe;
+        [SerializeField]private RecipeState currentRecipeState = RecipeState.None;
+        // public List<Recipe> RecipeList;  // GameManager 每次更新
+        // private bool   useOil=false,usePaste=false;
+
+        public RecipeState CurrentRecipeState
+        {
+            get => currentRecipeState;
+            set
+            {
+                currentRecipeState = value;
+                if (currentRecipeState == RecipeState.Success || currentRecipeState == RecipeState.Fail)
+                {
+                    GameManager.Instance._dialogBox.ShowTextByRecipeState(currentRecipeState);
+                    currentRecipeState  =RecipeState.None;
+                }
+                
+
+            }
+        }
+
+        public Recipe CurrentRecipe
+        {
+            get => currentRecipe;
+            set
+            {
+                currentRecipe = value;
+            }
+        }
+
 
         public void ClearCurrentProduction()
         {
@@ -25,26 +50,27 @@ namespace ByteLoop.Manager
                 transform = Go.transform.GetChild(i);
                 GameObject.Destroy(transform.gameObject);
             }
-            if ( RecipeList.Contains(currentRecipe))
-            {
-                RecipeList.Remove(currentRecipe);
-                // currentRecipe = RecipeList.Dequeue();  
-                              
-            }else{
-                Debug.Log("今天任务已完成");
-            }
         }
 
-        private void Update() {
-            if (recipeState==RecipeState.Confirm)
+        private void Update()
+        {
+            if (currentRecipeState == RecipeState.Confirm && Input.GetKeyDown(KeyCode.B) && GameManager.Instance.InputAllowed )
             {
+                CurrentRecipeState = RecipeState.Success;
                 ClearCurrentProduction();
+            }
+            else if (currentRecipeState == RecipeState.UnConfirm && Input.GetKeyDown(KeyCode.B)&& GameManager.Instance.InputAllowed)
+            {
+                CurrentRecipeState = RecipeState.Fail;
+                ClearCurrentProduction();
+            }else if(GameManager.Instance.InputAllowed&& DialogSystemTest.Instance._index==0 && Input.GetKeyDown(KeyCode.A) ){
+                DialogSystemTest.Instance.Next(false);
             }
         }
         protected override void Awake()
         {
             base.Awake();
-            RecipeList = new List<Recipe>();
+            // RecipeList = new List<Recipe>();
         }
         private void OnEnable()
         {
@@ -56,10 +82,10 @@ namespace ByteLoop.Manager
         {
             EventCenter.ComfirmCurrentProductionEvent -= CheckCurrentRecipeState;
         }
-        void CheckCanUseMaterial(){
-            GameObject Go = GameObject.FindGameObjectWithTag("MarterialParent");
-            Material[] materials = Go.GetComponentsInChildren<Material>();
-        }
+        // void CheckCanUseMaterial(){
+        //     GameObject Go = GameObject.FindGameObjectWithTag("MarterialParent");
+        //     Material[] materials = Go.GetComponentsInChildren<Material>();
+        // }
 
         void CheckCurrentRecipeState()
         {
@@ -84,24 +110,33 @@ namespace ByteLoop.Manager
             for (int i = 0; i < count; i++)
             {
                 MaterialType materialType = currentRecipe.RecipeItemList[i].materialTypes;
+                Debug.Log(dic.ContainsKey(materialType));
                 if (dic.ContainsKey(materialType))
                 {
-                    // Debug.Log("UnConfirm");
+                    currentRecipeState=RecipeState.UnConfirm;
                     // Debug.Log(dic[materialType]);
                     // Debug.Log(currentRecipe.RecipeItemList[i].nums);
                     if (dic[materialType] < currentRecipe.RecipeItemList[i].nums)
                     {
-                        // Debug.Log("UnConfirm");
+                        Debug.Log("UnConfirm");
+                        
                         return;
                     }
-                }else{
+                }
+                else
+                {
+                    currentRecipeState=RecipeState.UnConfirm;
+                    // Debug.Log("ssssssssssss");
+                    // currentRecipeState=RecipeState.None;
                     return;
                 }
             }
             // Debug.Log(currentRecipe.RecipeItemList.Count);
             // Debug.Log(dic.Count);
             // Debug.Log("Confirm");
-            recipeState = RecipeState.Confirm;
+            currentRecipeState = RecipeState.Confirm;
+
+
 
             // currentRecipe.RecipeItemList.Contains
             // return RecipeState.Confirm;
