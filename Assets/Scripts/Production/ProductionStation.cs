@@ -12,7 +12,9 @@ namespace ByteLoop.Manager
     {
         public Recipe currentRecipe;
         public RecipeState recipeState = RecipeState.UnConfirm;
-        public Queue<Recipe> RecipePrepareQueue;
+        [SerializeField]   public List<Recipe> RecipeList;
+        private bool   useOil=false,usePaste=false;
+        
 
         public void ClearCurrentProduction()
         {
@@ -23,11 +25,13 @@ namespace ByteLoop.Manager
                 transform = Go.transform.GetChild(i);
                 GameObject.Destroy(transform.gameObject);
             }
-            if (RecipePrepareQueue.Count>0)
+            if ( RecipeList.Contains(currentRecipe))
             {
-                currentRecipe = RecipePrepareQueue.Dequeue();                
+                RecipeList.Remove(currentRecipe);
+                // currentRecipe = RecipeList.Dequeue();  
+                              
             }else{
-                Debug.Log("暂时没有生意");
+                Debug.Log("今天任务已完成");
             }
         }
 
@@ -40,7 +44,7 @@ namespace ByteLoop.Manager
         protected override void Awake()
         {
             base.Awake();
-            RecipePrepareQueue = new Queue<Recipe>();
+            RecipeList = new List<Recipe>();
         }
         private void OnEnable()
         {
@@ -52,7 +56,10 @@ namespace ByteLoop.Manager
         {
             EventCenter.ComfirmCurrentProductionEvent -= CheckCurrentRecipeState;
         }
-
+        void CheckCanUseMaterial(){
+            GameObject Go = GameObject.FindGameObjectWithTag("MarterialParent");
+            Material[] materials = Go.GetComponentsInChildren<Material>();
+        }
 
         void CheckCurrentRecipeState()
         {

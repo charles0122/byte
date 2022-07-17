@@ -99,5 +99,43 @@ PrefabInstance:
       propertyPath: _type
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7781347181087212652, guid: 2e44187a7a21d5743a396cf2cd3831fc, type: 3}
+      propertyPath: _needTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781347181087212652, guid: 2e44187a7a21d5743a396cf2cd3831fc, type: 3}
+      propertyPath: dragSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a53234e15be8b24db3c5c7d1fa47b61, type: 3}
+    - target: {fileID: 7781347181087212652, guid: 2e44187a7a21d5743a396cf2cd3831fc, type: 3}
+      propertyPath: _collider2D
+      value: 
+      objectReference: {fileID: 473707665}
+    - target: {fileID: 7781347181087212652, guid: 2e44187a7a21d5743a396cf2cd3831fc, type: 3}
+      propertyPath: productionSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a53234e15be8b24db3c5c7d1fa47b61, type: 3}
+    m_RemovedComponents:
+    - {fileID: 7781347181087212653, guid: 2e44187a7a21d5743a396cf2cd3831fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2e44187a7a21d5743a396cf2cd3831fc, type: 3}
+--- !u!1 &4009425392958529766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7781347181087212640, guid: 2e44187a7a21d5743a396cf2cd3831fc, type: 3}
+  m_PrefabInstance: {fileID: 6654263261741556870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &473707665
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009425392958529766}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.50483334}
+  serializedVersion: 2
+  m_Radius: 2.11
