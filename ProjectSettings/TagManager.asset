@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Station
   - MarterialParent
+  - Env
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
     locked: 0
   - name: Material
     uniqueID: 3326584067
+    locked: 0
+  - name: Anim
+    uniqueID: 1218271457
     locked: 0

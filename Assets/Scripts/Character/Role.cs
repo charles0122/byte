@@ -14,4 +14,5 @@ public class Role : ScriptableObject
     public float WaitTime =30f;
     [SerializeField] public Recipe recipe;      // 拖拽 每天都一样
 
+   [SerializeField] public Sprite RoleAvatar;
 }

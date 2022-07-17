@@ -10,6 +10,7 @@ namespace ByteLoop.Manager
 
     public class GameManager : PersistentMonoSingleton<GameManager>
     {
+
         [SerializeField] private int day = 0;
         [SerializeField] private int npc = 0;
         public bool IsPaused = false;
@@ -25,7 +26,9 @@ namespace ByteLoop.Manager
         [SerializeField] public List<DayDialog> dayDialogList;
         private List<RoleDialogSO> roleDialogSOList;
         [SerializeField] public DialogBox _dialogBox;
-        private int dialogIndex = 0;
+        [SerializeField] public GameObject DesktapPrefab;
+        public GameObject OverAnimGo;
+        // private int dialogIndex = 0;
 
         public bool isFade;
         public CanvasGroup fadeCanvasGroup;
@@ -42,7 +45,8 @@ namespace ByteLoop.Manager
                 {
 
                     day = value;
-                    if(!isFade){
+                    if (!isFade)
+                    {
                         StartCoroutine(SwitchDayScene());
                     }
 
@@ -52,25 +56,46 @@ namespace ByteLoop.Manager
                     // day = 0;
                     // npc=0;
                     Debug.Log("next loop");
-                    day = 0;
-                    Npc = 0;
-                    DialogSystemTest.Instance.StartDialog();
+                    // day = 0;
+                    // Npc = 0;
+                    // DialogSystemTest.Instance.StartDialog();
+
+                    // test
+                    Debug.Log("开始动画");
+                    StartCoroutine(OverLoop());
 
                 }
 
             }
         }
 
+        private IEnumerator OverLoop()
+        {
+            yield return new WaitForSeconds(2f);
+            // yield return ;// 过场动画
+            UIManager.Instance.HidePanel(UIManager.Instance.GamePanel);
+            OverAnimGo.SetActive(true);
+            AudioManager.Instance.PlayBGM(Music.MainMenuBGM, true);
+            yield return new WaitForSeconds(25f);
+            UIManager.Instance.SwitchMainMenuState(true);
+            AudioManager.Instance.Stop();
+
+        }
+
         private IEnumerator SwitchDayScene()
         {
-            fadeCanvasGroup.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText("第"+(Day+1)+"天");
+            fadeCanvasGroup.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText("第" + (Day + 1) + "天");
             yield return Fade(1);
             Debug.Log("next day");
+            Destroy(GameObject.FindGameObjectWithTag("Env").transform.GetChild(0).gameObject);
+            GameObject gameObject = Instantiate(DesktapPrefab, new Vector3(0,-2.35f,0), Quaternion.identity);
+            gameObject.transform.SetParent(GameObject.FindGameObjectWithTag("Env").transform);
             RefalshCurrentProductionDialog();
             RefalshCurrentProductionStationRecipe();
+            // yield return new WaitForSeconds(2f);
             yield return Fade(0);
         }
-        
+
 
         private IEnumerator Fade(float targetAlpha)
         {
@@ -127,11 +152,31 @@ namespace ByteLoop.Manager
 
         private void Start()
         {
+            UIManager.Instance.SwitchMainMenuState(true);
+        }
+
+        public void StartGame()
+        {
+
+            StartCoroutine(StartGameRoutine());
+
+        }
+
+        IEnumerator StartGameRoutine()
+        {
+            yield return Fade(1);
+
             // 如果做存储的话 保存这两个值
             day = 0;
             Npc = 0;
+            // UIManager.Instance.HidePanel(UIManager.Instance.MainMenu);
+            UIManager.Instance.SwitchMainMenuState(false);
             DialogSystemTest.Instance.StartDialog();
+            yield return Fade(0);
 
+            // test
+            // yield return new WaitForSeconds(2f);
+            // StartCoroutine(SwitchDayScene());
         }
 
         void RefalshCurrentProductionStationRecipe()
@@ -149,6 +194,11 @@ namespace ByteLoop.Manager
         public bool HasNextDay()
         {
             return Day + 1 < dayDialogList.Count;
+        }
+
+        public void ExitGame()
+        {
+            Application.Quit();
         }
 
     }

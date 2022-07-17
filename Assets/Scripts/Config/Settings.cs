@@ -1,4 +1,4 @@
 public static class Settings{
-    static int dayOutput = 10;
+    // static int dayOutput = 10;
      
 }

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: NPC0
   m_EditorClassIdentifier: 
   index: 0
-  RoleName: NPC0
+  RoleName: "\u793E\u755C"
   roleDialogSO: {fileID: 0}
   WaitTime: 30
   recipe: {fileID: 11400000, guid: 399bddbd2673cb2428f253b6d5ec1ff2, type: 2}
+  RoleAvatar: {fileID: 21300000, guid: 70f6b05f2bcc17b43b158340d6e99a62, type: 3}

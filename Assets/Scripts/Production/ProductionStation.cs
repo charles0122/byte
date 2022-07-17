@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ByteLoop.Tool;
 using UnityEngine;
+using ByteLoop.DialogSystem;
 
 namespace ByteLoop.Manager
 {
@@ -55,17 +56,21 @@ namespace ByteLoop.Manager
 
         private void Update()
         {
-            if (currentRecipeState == RecipeState.Confirm && Input.GetKeyDown(KeyCode.B) && GameManager.Instance.InputAllowed)
+            if (!DialogSystemTest.Instance._dialogBox._interactable && GameManager.Instance.InputAllowed)
+            {
+                return;
+            }
+            if (currentRecipeState == RecipeState.Confirm && Input.GetKeyDown(KeyCode.B) )
             {
                 CurrentRecipeState = RecipeState.Success;
                 ClearCurrentProduction();
             }
-            else if (currentRecipeState == RecipeState.UnConfirm && Input.GetKeyDown(KeyCode.B) && GameManager.Instance.InputAllowed)
+            else if (currentRecipeState == RecipeState.UnConfirm && Input.GetKeyDown(KeyCode.B) )
             {
                 CurrentRecipeState = RecipeState.Fail;
                 ClearCurrentProduction();
             }
-            else if (GameManager.Instance.InputAllowed && DialogSystemTest.Instance._index == 0 && Input.GetKeyDown(KeyCode.A))
+            else if ( DialogSystemTest.Instance._index == 0 && Input.GetKeyDown(KeyCode.A))
             {
                 GameManager.Instance.Npc++;
                 DialogSystemTest.Instance.Next(false);
@@ -107,6 +112,12 @@ namespace ByteLoop.Manager
                 {
                     dic.Add(materials[i].Type, 1);
                 }
+            }
+
+            if(!dic.ContainsKey(MaterialType.Flour)){
+                CurrentRecipeState = RecipeState.None;
+                Debug.Log("没有面糊");
+                return;
             }
 
             int count = currentRecipe.RecipeItemList.Count;

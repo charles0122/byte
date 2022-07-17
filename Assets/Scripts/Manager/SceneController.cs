@@ -49,7 +49,7 @@ namespace ByteLoop.Manager
         private IEnumerator Start()
         {
             faderImage.color = new Color(0f, 0f, 0f, 1f);
-            faderCanvasGroup.alpha = 1;
+            // faderCanvasGroup.alpha = 1;
             yield return StartCoroutine(LoadSceneAndSetActive(StartingSceneName.ToString()));
             EventCenter.CallAfterSceneloadEvent();
      

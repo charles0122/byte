@@ -9,13 +9,13 @@ using ByteLoop.Manager;
 public class DialogBox : MonoBehaviour
 {
     // [SerializeField] private Image _background;
-    [SerializeField] private Widget _widget, _nextCursor;
+    [SerializeField] public Widget _widget, _nextCursor;
     [SerializeField] private TMPro.TextMeshProUGUI _npc;
     [SerializeField] private AdvancedText _content;
     // [SerializeField] private Animator _nextCursorAnim;
 
 
-    private bool _interactable;
+    public bool _interactable;
     private bool _printFinished;
     private bool _canQuickShow;
     private bool _autoNext;
@@ -49,10 +49,13 @@ public class DialogBox : MonoBehaviour
     private void Update()
     {
         // Debug.Log(_interactable);
-        if (_interactable)
-        {
-            UpdateInput();
-        }
+        // if (_interactable)
+        // {
+        //     // UpdateInput();
+        //     GameManager.Instance.InputAllowed = true;
+        // }else{
+        //     GameManager.Instance.InputAllowed = false;
+        // }
     }
 
 

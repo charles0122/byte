@@ -31,7 +31,7 @@ public class Material : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        if (dragSprite != null)
+        if (!isFinished&&dragSprite != null)
         {
             _spriteRenderer.sprite = dragSprite;
         }
@@ -51,6 +51,7 @@ public class Material : MonoBehaviour
 
         if (!isFinished)
         {
+            // 距离锅中心的多少距离  3f   可以改成原料属性
             if (Mathf.Abs(transform.position.x - targetTrans.position.x) <= 3f &&
             Mathf.Abs(transform.position.y - targetTrans.position.y) <= 3f)
             {
@@ -66,10 +67,12 @@ public class Material : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        if(!isFinished)
         transform.localScale += Vector3.one * 0.07f;
     }
     private void OnMouseExit()
     {
+        if(!isFinished)
         transform.localScale -= Vector3.one * 0.07f;
     }
 
@@ -115,9 +118,16 @@ public class Material : MonoBehaviour
 public enum MaterialType
 {
     None,
-    Egg,
-    Pepper,
-    Sauce,
-    Sausage,
-    Sesame
+    Egg,    // 鸡蛋
+    Pepper, // 胡椒粉
+    Sauce,      // 甜面酱
+    Sausage,    // 芝麻
+    Sesame,     // 芝麻
+    Coriander,  // 香菜
+    Onion,      // 香葱
+    RemaineLettuce,     // 生菜
+    Flour,      // 面糊
+    Meat,   // 里脊
+    Oil,    // 油
+    Crisp   // 薄脆
 }
