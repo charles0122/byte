@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6047b50fbce91f64999bcd3117509349, type: 3}
+  m_Name: D0_N4
+  m_EditorClassIdentifier: 
+  Npc: "\u67D0\u6559\u80B2\u9500\u552E"
+  defaultDialog:
+  - Content: "\u770B\u4F60\u4E5F\u5FEB\u6536\u644A\u4E86\uFF0C\u714E\u997C\u4EC0\u4E48\u7684\u65E0\u6240\u8C13\uFF0C\u5144\u5F1F\u4F60\u4F1A3D\u5EFA\u6A21\u5417\t\t\t\t\t\r\n"
+    AutoNext: 1
+    NeedTyping: 1
+    CanQuickShow: 0
+  - Content: "\u8FD8\u771F\u662F\u9AD8\u624B\u5728\u6C11\u95F4\u554A\uFF0C\u6709\u4E2A\u673A\u4F1A\u8BF4\u4E0D\u5B9A\u5144\u5F1F\u4F60\u53EF\u4EE5\u6765\t\t\t\t\t\r\n"
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 0
+  successDialog:
+    Content: "\u54CE\uFF0C\u522B\u8D70\u554A\uFF0C\u770B\u770B\u6211\u8FD9\u5B66\u4E863\u4E2A\u6708\u5EFA\u7684\u6A21\u578B\u600E\u4E48\u6837\t\t\t\t\t\r\n"
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 0
+  failDialog:
+    Content: "\u867D\u7136\u997C\u4E0D\u600E\u4E48\u6837\uFF0C\u4F46\u662F\u5144\u5F1F\u4F60\u6A21\u578B\u771F\u6709\u4E00\u624B\t\t\t\t\t\r\n"
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 0

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6047b50fbce91f64999bcd3117509349, type: 3}
+  m_Name: D4_N4
+  m_EditorClassIdentifier: 
+  Npc: "\u67D0\u6559\u80B2\u9500\u552E"
+  defaultDialog:
+  - Content: "\u6765\u55BD\u5144\u5F1F\uFF0C\u662F\u6211\uFF0C\u6628\u5929\u4F60\u8003\u8651\u7684\u600E\u4E48\u6837\u4E86\uFF0C\u591A\u7684\u4E0D\u8BF4\uFF0C\u8FD9\u53EF\u662F\u597D\u673A\u4F1A\uFF0C\u80FD\u8D5A\u5927\u94B1\u7684\t\t\t\t\t\r\n"
+    AutoNext: 1
+    NeedTyping: 1
+    CanQuickShow: 0
+  - Content: "\u4F60\u540C\u610F\u4E86\u554A\uFF0C\u90A3\u592A\u597D\u4E86\uFF0C\u54C8\u54C8\uFF0C\u54B1\u4EEC\u5C31\u662F\u771F\u5144\u5F1F\u4E86\uFF0C\u6B63\u6240\u8C13\u6709\u798F\u540C\u4EAB\uFF0C\u540E\u534A\u53E5\u4EC0\u4E48\u6765\u7740\uFF0C\u7B97\u4E86\uFF0C\u4E0D\u91CD\u8981\t\t\t\t\t\r\n"
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 0
+  successDialog:
+    Content: "\u4F60\u95EE\u6211\u4EEC\u600E\u4E48\u6323\u94B1\u554A\uFF0C\u529E\u5361\u554A\uFF0C\u6211\u4EEC\u600E\u4E48\u4F18\u8D28\u7684\u6559\u5B66\u6C34\u5E73\uFF0C\u63D0\u524D\u900F\u652F\u529E\u4E24\u5F20\u5361\u600E\u4E48\u4E86\uFF0C\u800C\u4E14\u8FD9\u6837\u6765\u94B1\u624D\u5FEB\t\t\t\t\t\r\n"
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 0
+  failDialog:
+    Content: "\u5144\u5F1F\uFF0C\u6211\u5C31\u8BF4\u4E86\u4F60\u8FD9\u714E\u997C\u679C\u5B50\u6C34\u5E73\u4E0D\u884C\uFF0C\u4F60\u8FD8\u5728\u8FD9\u575A\u6301\u641E\u8FD9\u4E2A\u5E72\u4EC0\u4E48\uFF0C\u8D76\u7D27\u52A0\u5165\u6211\u8FD9\u884C\u5427\t\t\t\t\t\r\n"
+    AutoNext: 0
+    NeedTyping: 1
+    CanQuickShow: 0

@@ -10,8 +10,8 @@ namespace ByteLoop.Manager
 
     public class ProductionStation : PersistentMonoSingleton<ProductionStation>
     {
-        [SerializeField]private Recipe currentRecipe;
-        [SerializeField]private RecipeState currentRecipeState = RecipeState.None;
+        [SerializeField] private Recipe currentRecipe;
+        [SerializeField] private RecipeState currentRecipeState = RecipeState.None;
         // public List<Recipe> RecipeList;  // GameManager 每次更新
         // private bool   useOil=false,usePaste=false;
 
@@ -24,9 +24,10 @@ namespace ByteLoop.Manager
                 if (currentRecipeState == RecipeState.Success || currentRecipeState == RecipeState.Fail)
                 {
                     GameManager.Instance._dialogBox.ShowTextByRecipeState(currentRecipeState);
-                    currentRecipeState  =RecipeState.None;
+
+                    CurrentRecipeState = RecipeState.None;
                 }
-                
+
 
             }
         }
@@ -54,16 +55,19 @@ namespace ByteLoop.Manager
 
         private void Update()
         {
-            if (currentRecipeState == RecipeState.Confirm && Input.GetKeyDown(KeyCode.B) && GameManager.Instance.InputAllowed )
+            if (currentRecipeState == RecipeState.Confirm && Input.GetKeyDown(KeyCode.B) && GameManager.Instance.InputAllowed)
             {
                 CurrentRecipeState = RecipeState.Success;
                 ClearCurrentProduction();
             }
-            else if (currentRecipeState == RecipeState.UnConfirm && Input.GetKeyDown(KeyCode.B)&& GameManager.Instance.InputAllowed)
+            else if (currentRecipeState == RecipeState.UnConfirm && Input.GetKeyDown(KeyCode.B) && GameManager.Instance.InputAllowed)
             {
                 CurrentRecipeState = RecipeState.Fail;
                 ClearCurrentProduction();
-            }else if(GameManager.Instance.InputAllowed&& DialogSystemTest.Instance._index==0 && Input.GetKeyDown(KeyCode.A) ){
+            }
+            else if (GameManager.Instance.InputAllowed && DialogSystemTest.Instance._index == 0 && Input.GetKeyDown(KeyCode.A))
+            {
+                GameManager.Instance.Npc++;
                 DialogSystemTest.Instance.Next(false);
             }
         }
@@ -110,22 +114,21 @@ namespace ByteLoop.Manager
             for (int i = 0; i < count; i++)
             {
                 MaterialType materialType = currentRecipe.RecipeItemList[i].materialTypes;
-                Debug.Log(dic.ContainsKey(materialType));
+                // Debug.Log(dic.ContainsKey(materialType));
                 if (dic.ContainsKey(materialType))
                 {
-                    currentRecipeState=RecipeState.UnConfirm;
-                    // Debug.Log(dic[materialType]);
-                    // Debug.Log(currentRecipe.RecipeItemList[i].nums);
+                    currentRecipeState = RecipeState.UnConfirm;
+                   
                     if (dic[materialType] < currentRecipe.RecipeItemList[i].nums)
                     {
                         Debug.Log("UnConfirm");
-                        
+
                         return;
                     }
                 }
                 else
                 {
-                    currentRecipeState=RecipeState.UnConfirm;
+                    currentRecipeState = RecipeState.UnConfirm;
                     // Debug.Log("ssssssssssss");
                     // currentRecipeState=RecipeState.None;
                     return;

@@ -83,11 +83,10 @@ public class DialogBox : MonoBehaviour
                 break;
         }
         // Debug.Log(GameManager.Instance.TodayHasNextNpc());
-        if (GameManager.Instance.TodayHasNextNpc())
-        {
-            Debug.Log("hgygh");
-            GameManager.Instance.Npc++;
-        }
+        // if (GameManager.Instance.TodayHasNextNpc())
+        // {
+        //     GameManager.Instance.Npc++;
+        // }
         
     }
 
