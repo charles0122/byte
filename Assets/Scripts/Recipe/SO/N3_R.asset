@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e45af443253fd147aed864e24f77bcd, type: 3}
+  m_Name: N3_R
+  m_EditorClassIdentifier: 
+  desc: "NPC0\u7684\u98DF\u8C31"
+  RecipeItemList:
+  - materialTypes: 11
+    nums: 1
+  - materialTypes: 9
+    nums: 1
+  - materialTypes: 7
+    nums: 1
+  - materialTypes: 6
+    nums: 1
+  - materialTypes: 8
+    nums: 1
+  - materialTypes: 12
+    nums: 1
+  - materialTypes: 4
+    nums: 1
+  - materialTypes: 2
+    nums: 1
