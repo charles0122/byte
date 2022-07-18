@@ -75,7 +75,7 @@ namespace ByteLoop.Manager
             // yield return ;// 过场动画
             UIManager.Instance.HidePanel(UIManager.Instance.GamePanel);
             OverAnimGo.SetActive(true);
-            AudioManager.Instance.PlayBGM(Music.MainMenuBGM, true);
+            // AudioManager.Instance.PlayBGM(Music.MainMenuBGM, true); // 全程bgm
             yield return new WaitForSeconds(25f);
             // 最后一张CG 延迟 10s
             yield return new WaitForSeconds(10f);
@@ -157,6 +157,7 @@ namespace ByteLoop.Manager
 
         private void Start()
         {
+            AudioManager.Instance.PlayBGM(Music.MainMenuBGM,true);
             UIManager.Instance.SwitchMainMenuState(true);
         }
 
@@ -176,8 +177,9 @@ namespace ByteLoop.Manager
             // UIManager.Instance.HidePanel(UIManager.Instance.MainMenu);
             UIManager.Instance.SwitchMainMenuState(false);
             yield return new WaitForSeconds(1f);
-            yield return Fade(0);
             DialogSystemTest.Instance.StartDialog();
+            yield return Fade(0);
+            
 
             // test
             // yield return new WaitForSeconds(2f);

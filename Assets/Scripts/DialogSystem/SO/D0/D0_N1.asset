@@ -18,7 +18,7 @@ MonoBehaviour:
     AutoNext: 1
     NeedTyping: 1
     CanQuickShow: 0
-  - Content: "\u53EF\u4EE5\u554A\u94C1\u6C41\uFF0C\u7ED9\u54B1\u6765\u4E00\u4E2A\u5457\uFF0C\u591A\u52A0\u70B9\u751F\u83DC\t\t\t\t\t\r\n"
+  - Content: "\u53EF\u4EE5\u554A\u94C1\u6C41\uFF0C\u7ED9\u54B1\u6765\u4E00\u4E2A\u5457\uFF0C\u591A\u52A0\u70B9<color=#ff0000>\u751F\u83DC</color>"
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 0

@@ -34,11 +34,12 @@ public class UIManager : PersistentMonoSingleton<UIManager>
     {
         if(MainMenu!=null)
         MainMenu.SetActive(state);
-        if(state){
-            AudioManager.Instance.PlayBGM(Music.MainMenuBGM,true);
-        }else{
-            AudioManager.Instance.Stop();
-        }
+        
+        // if(state){
+        //     AudioManager.Instance.PlayBGM(Music.MainMenuBGM,true);
+        // }else{
+        //     AudioManager.Instance.Stop();
+        // }
     }
 
     public void SwitchExplain(bool state){

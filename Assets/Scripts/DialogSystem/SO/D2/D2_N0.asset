@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Npc: "\u516C\u53F8\u804C\u5458"
   defaultDialog:
-  - Content: "\u8001\u677F\uFF0C\u8001\u6837\u5B50\uFF0C\u9EBB\u70E6\u60A8\u5FEB\u70B9\u4E86\t\t\t\t\t\r\n"
+  - Content: "\u8001\u677F\uFF0C<color=#ff0000>\u8001\u6837\u5B50</color>\uFF0C\u9EBB\u70E6\u60A8\u5FEB\u70B9\u4E86"
     AutoNext: 1
     NeedTyping: 1
     CanQuickShow: 0
-  - Content: "\u6700\u8FD1\u5DE5\u4F5C\u4EA4\u63A5\u50AC\u7684\u7D27\uFF0C\u4E0A\u73ED\u53C8\u8981\u63D0\u524D\u534A\u5C0F\u65F6\u4E86\t\t\t\t\t\r\n"
+  - Content: "\u6700\u8FD1\u5DE5\u4F5C\u4EA4\u63A5\u50AC\u7684\u7D27\uFF0C\u4E0A\u73ED\u53C8\u8981\u63D0\u524D\u534A\u5C0F\u65F6\u4E86"
     AutoNext: 0
     NeedTyping: 1
     CanQuickShow: 0
