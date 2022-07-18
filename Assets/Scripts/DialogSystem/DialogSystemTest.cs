@@ -10,7 +10,7 @@ public class DialogSystemTest : PersistentMonoSingleton<DialogSystemTest>
     [SerializeField] public DialogBox _dialogBox;
     [Multiline][SerializeField] private string content;
     public List<DialogData> datas;
-    public int _index = 0;
+    [SerializeField]public int _index = 0;
     [SerializeField] private Widget _widget;
 
 
@@ -27,6 +27,7 @@ public class DialogSystemTest : PersistentMonoSingleton<DialogSystemTest>
         ));
         _index++;
         _index = _index % datas.Count;
+
 
     }
 

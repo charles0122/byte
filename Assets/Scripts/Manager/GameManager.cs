@@ -32,7 +32,7 @@ namespace ByteLoop.Manager
 
         public bool isFade;
         public CanvasGroup fadeCanvasGroup;
-        public float fadeDuration = 2f;
+        public float fadeDuration;
 
         public int Day
         {
@@ -77,9 +77,13 @@ namespace ByteLoop.Manager
             OverAnimGo.SetActive(true);
             AudioManager.Instance.PlayBGM(Music.MainMenuBGM, true);
             yield return new WaitForSeconds(25f);
-            UIManager.Instance.SwitchMainMenuState(true);
+            // 最后一张CG 延迟 10s
+            yield return new WaitForSeconds(10f);
+            // 暂停音乐
             AudioManager.Instance.Stop();
-
+            // 延迟 2s返回主界面
+            yield return new WaitForSeconds(2f);
+            UIManager.Instance.SwitchMainMenuState(true);
         }
 
         private IEnumerator SwitchDayScene()
@@ -92,8 +96,9 @@ namespace ByteLoop.Manager
             gameObject.transform.SetParent(GameObject.FindGameObjectWithTag("Env").transform);
             RefalshCurrentProductionDialog();
             RefalshCurrentProductionStationRecipe();
-            // yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f);
             yield return Fade(0);
+            
         }
 
 
@@ -165,18 +170,22 @@ namespace ByteLoop.Manager
         IEnumerator StartGameRoutine()
         {
             yield return Fade(1);
-
             // 如果做存储的话 保存这两个值
             day = 0;
             Npc = 0;
             // UIManager.Instance.HidePanel(UIManager.Instance.MainMenu);
             UIManager.Instance.SwitchMainMenuState(false);
-            DialogSystemTest.Instance.StartDialog();
+            yield return new WaitForSeconds(1f);
             yield return Fade(0);
+            DialogSystemTest.Instance.StartDialog();
 
             // test
             // yield return new WaitForSeconds(2f);
             // StartCoroutine(SwitchDayScene());
+
+            // Debug.Log("开始动画");
+            // StartCoroutine(OverLoop());
+
         }
 
         void RefalshCurrentProductionStationRecipe()

@@ -150,8 +150,6 @@ namespace ByteLoop.Manager
             // Debug.Log("Confirm");
             currentRecipeState = RecipeState.Confirm;
 
-
-
             // currentRecipe.RecipeItemList.Contains
             // return RecipeState.Confirm;
 

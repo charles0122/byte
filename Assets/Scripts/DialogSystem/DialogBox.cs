@@ -46,17 +46,17 @@ public class DialogBox : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // Debug.Log(_interactable);
-        // if (_interactable)
-        // {
-        //     // UpdateInput();
-        //     GameManager.Instance.InputAllowed = true;
-        // }else{
-        //     GameManager.Instance.InputAllowed = false;
-        // }
-    }
+    // private void Update()
+    // {
+    //     Debug.Log(_interactable);
+    //     if (_interactable)
+    //     {
+    //         // UpdateInput();
+    //         GameManager.Instance.InputAllowed = true;
+    //     }else{
+    //         GameManager.Instance.InputAllowed = false;
+    //     }
+    // }
 
 
     public void ShowTextByRecipeState(RecipeState recipeState)
@@ -64,13 +64,14 @@ public class DialogBox : MonoBehaviour
         switch (recipeState)
         {
             case RecipeState.Fail:
-                DialogSystemTest.Instance._index++;
+                DialogSystemTest.Instance._index=3;
                 if (CanNext)
                 {
                     _interactable = false;
                     _nextCursor.Fade(0, 0.5f, null);
                     OnNext?.Invoke(false);
                 }
+                DialogSystemTest.Instance._index=0;
                 break;
             case RecipeState.Success:
                 if (CanQuickShow)
@@ -83,6 +84,7 @@ public class DialogBox : MonoBehaviour
                     _nextCursor.Fade(0, 0.5f, null);
                     OnNext?.Invoke(true);
                 }
+                DialogSystemTest.Instance._index=0;
                 break;
         }
         // Debug.Log(GameManager.Instance.TodayHasNextNpc());
@@ -90,7 +92,7 @@ public class DialogBox : MonoBehaviour
         // {
         //     GameManager.Instance.Npc++;
         // }
-        
+
     }
 
     private void UpdateInput()

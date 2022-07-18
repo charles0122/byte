@@ -2153,7 +2153,7 @@ MonoBehaviour:
   OverAnimGo: {fileID: 1304882668}
   isFade: 0
   fadeCanvasGroup: {fileID: 2071716584}
-  fadeDuration: 1.4
+  fadeDuration: 1.5
 --- !u!4 &1196763926
 Transform:
   m_ObjectHideFlags: 0

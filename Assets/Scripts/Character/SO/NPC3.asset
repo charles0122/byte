@@ -16,5 +16,5 @@ MonoBehaviour:
   RoleName: "\u8001\u94C1"
   roleDialogSO: {fileID: 0}
   WaitTime: 30
-  recipe: {fileID: 11400000, guid: 77d5f167a2950ff48b473adde7b7a40c, type: 2}
+  recipe: {fileID: 11400000, guid: 399bddbd2673cb2428f253b6d5ec1ff2, type: 2}
   RoleAvatar: {fileID: 21300000, guid: b52cb7f59c96bc2469a57e67daae5beb, type: 3}
